@@ -25,7 +25,7 @@ export async function insertData() {
     }
   );
 
-  const { data, error } = await supabase.from("papers").insert(parsedForInsert);
+  const { data, error } = await supabase.from("papers").upsert(parsedForInsert); // we are using upsert to avoid duplicates and update the existing ones
 
   if (error) {
     console.error("Error inserting data:", error);
